@@ -41,21 +41,5 @@ public abstract class AbsQuestion implements Serializable {
         String result = "[id=" + questionId + "] question(difficulty=" + difficulty + "):" + question;
         return result;
     }
-
-    /**
-     * this function return new question from input
-     *
-     * @param <T> is type of the question
-     * @return
-     */
-    public static <T extends AbsQuestion> T createQuestion() {
-        return T.createQuestion();
-    }
-
-    public static <T extends AbsQuestion> T createAndSaveQuestion() {
-        AbsQuestion question = AbsQuestion.<T>createQuestion();
-        question.save();
-        return (T) question;
-    }
-
 }
+
