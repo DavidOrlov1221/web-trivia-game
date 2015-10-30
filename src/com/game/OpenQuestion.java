@@ -11,8 +11,10 @@ package com.game;
  */
 public class OpenQuestion extends AbsQuestion{
 
-    public OpenQuestion(String question, String difficulty, int questionId, String category, String rightAnswer) {
-        super(question, difficulty, questionId, category, rightAnswer);
+    public OpenQuestion(String question, String difficulty, int questionId, String category, String rightAnswer, String... answers) {
+        super(question, difficulty, questionId, category, rightAnswer, answers);
     }
+
+  
     
 }

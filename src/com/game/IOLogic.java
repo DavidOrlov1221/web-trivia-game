@@ -12,7 +12,7 @@ import java.io.*;
  *
  * @author kondrone
  */
-public class Logic {
+public class IOLogic {
 
     public static List<AbsQuestion> loadQuestions(String filePath){
 
@@ -35,13 +35,16 @@ public class Logic {
            return  null;
         }
     }
-
+    
     public static void saveGameQuestions(String filePath, List<AbsQuestion> questions) {
-
+        //this function need to be checked again for more impossible errorss
         try {
-            //use buffering
-            OutputStream file = new FileOutputStream(filePath);
-            OutputStream buffer = new BufferedOutputStream(file);
+            File file = new  File(filePath);
+            if(file.exists() && file.isFile()){
+                file.delete();
+            }
+            OutputStream fileOutput = new FileOutputStream(file);
+            OutputStream buffer = new BufferedOutputStream(fileOutput);
             ObjectOutput output = new ObjectOutputStream(buffer);
             try {
                 output.writeObject(questions);

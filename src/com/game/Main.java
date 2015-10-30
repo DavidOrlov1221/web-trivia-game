@@ -16,11 +16,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<AbsQuestion> questions = new ArrayList<AbsQuestion>();
-        questions.add(new  MultiOptionsQuestion("what is your name", "easy", 0, "game", "ronen", "ahmad","guy"));
-        //Logic.saveGameQuestions("~/Desctop/File.txt", questions);
-        
-        
+       new GameController().StartGame(".File.txt");
+
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,18 +15,12 @@ import java.util.List;
  */
 public class MultiOptionsQuestion extends AbsQuestion {
 
-    List<String> answers;
- 
-
     public MultiOptionsQuestion(String question, String difficulty, int questionId, String category, String rightAnswer, String... answers) {
-        super(question, difficulty, questionId, category,rightAnswer);
-        this.answers = Arrays.asList(answers);
-        this.answers.add(rightAnswer);
+        super(question, difficulty, questionId, category, rightAnswer, answers);
     }
 
-    protected void removeAnswer(String deleteAnswer) {
-        this.answers.remove(deleteAnswer);
+  
 
-    }
+  
 
 }

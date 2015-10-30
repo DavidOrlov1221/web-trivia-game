@@ -11,7 +11,7 @@ package com.game;
  */
 public class YesNoQuestion extends MultiOptionsQuestion {
 
-    public YesNoQuestion(String question, String difficulty, int questionId, String category,String rightAnswer, String... answers) {
+    public YesNoQuestion(String question, String difficulty, int questionId, String category,String rightAnswer) {
         super(question, difficulty, questionId, category, rightAnswer, "yes","no");
         this.removeAnswer(rightAnswer);
 
