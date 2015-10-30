@@ -67,6 +67,9 @@ public abstract class AbsQuestion implements Serializable {
     public void removeAnswer(String deleteAnswer) {
         this.answers.remove(deleteAnswer);
     }
+     public void removeAnswer(int i) {
+        this.answers.remove(i);
+    }
 
     public void addAnswer(String deleteAnswer) {
         this.answers.add(deleteAnswer);

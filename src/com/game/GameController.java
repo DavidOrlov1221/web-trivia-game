@@ -5,6 +5,7 @@
  */
 package com.game;
 
+import java.time.Clock;
 import java.util.*;
 
 /**
@@ -14,17 +15,18 @@ import java.util.*;
 public class GameController {
 
     private static Scanner scan = new Scanner(System.in);
+    private int id=0;
     //private  List<AbsQuestion> questions
-
+  private QuestionsModel questions;
     public void StartGame(String filePath) {
-
+ 
         //TODO add save to file and read
-        AbsQuestion q1 = new YesNoQuestion("1", "easy", 0, "motivation", "yes");
-        AbsQuestion q2 = new YesNoQuestion("2", "easy", 0, "motivation", "yes");
-        AbsQuestion q3 = new YesNoQuestion("3", "easy", 0, "motivation1", "yes");
-        AbsQuestion q4 = new YesNoQuestion("4", "easy", 0, "motivation2", "yes");
-        AbsQuestion q5 = new YesNoQuestion("5", "easy", 0, "motivation", "yes");
-        QuestionsModel questions = new QuestionsModel(q1, q2, q3, q4, q5);
+        AbsQuestion q1 = new YesNoQuestion("1", "easy", 1, "motivation", "yes");
+        AbsQuestion q2 = new YesNoQuestion("2", "easy", 2, "motivation", "yes");
+        AbsQuestion q3 = new YesNoQuestion("3", "easy", 3, "motivation1", "yes");
+        AbsQuestion q4 = new YesNoQuestion("4", "easy", 4, "motivation2", "yes");
+        AbsQuestion q5 = new YesNoQuestion("5", "easy", 5, "motivation", "yes");
+        questions = new QuestionsModel(q1, q2, q3, q4, q5);
         System.out.println("welcome to TRIVIA GAME");
 
         //while the input is not add ,delete ,viwe and save
@@ -39,10 +41,10 @@ public class GameController {
 
             //delete options
             if (operation.equalsIgnoreCase("add")) {
-
+add();
             }
             if (operation.equalsIgnoreCase("delete")) {
-
+delete();
             }
             if (operation.equalsIgnoreCase("view")) {
                 view(questions);
@@ -88,11 +90,76 @@ public class GameController {
     }
 
     private void delete() {
-
+String DeleteOutPut="";
+        for (int i = 0; i < questions.questions.size(); i++) {
+            DeleteOutPut+=questions.questions.get(i).toString()+"\n";
+        }
+        System.out.println(DeleteOutPut);
+        System.out.println("choose id to delete");
+       int i= scan.nextInt();
+       i-=1;
+          questions.questions.remove(i);
+          DeleteOutPut="";
+          for ( i = 0; i < questions.questions.size(); i++) {
+            DeleteOutPut+=questions.questions.get(i).toString()+"\n";
+        }
+              System.out.println(DeleteOutPut);
+      
+    
     }
 
     private void add() {
-
+        
+        System.out.println("what type of question you want to add ?");
+        String type= scan.next();
+        if (type.equals("YN"))
+        {
+                   String question= scan.next();
+   String difficulty= scan.next();
+   
+     
+    String category = scan.next();
+  String rightAnswer= scan.next();
+            YesNoQuestion s = new YesNoQuestion(question, difficulty, id, category, rightAnswer);
+            id++;
+            questions.questions.add(s);
+        }
+         if (type.equals("OPEN"))
+        {
+                   String question= scan.next();
+   String difficulty= scan.next();
+   
+     
+    String category = scan.next();
+  String rightAnswer= scan.next();
+  String UserAnswer= scan.next();
+             OpenQuestion s = new OpenQuestion(question, difficulty, id, category, rightAnswer);
+            id++;
+             questions.questions.add(s);
+        }
+          if (type.equals("MULTI"))
+        {
+                   String question= scan.next();
+   String difficulty= scan.next();
+   
+     
+    String category = scan.next();
+  String rightAnswer= scan.next();
+  String UserAnswer= scan.next();
+  System.out.println("type answers press -1 to stop giving answers");
+  ArrayList<String> answersMulti = new ArrayList<String>(); 
+ 
+   String AnswerMulti= scan.next();
+  while(!AnswerMulti.equals("-1"))
+  {
+      answersMulti.add(AnswerMulti);
+  }
+   String[] arrayaAnswers=answersMulti.toArray(new String[0]);
+            MultiOptionsQuestion s = new MultiOptionsQuestion(question, difficulty, id, category, rightAnswer,arrayaAnswers);
+            id++;
+             questions.questions.add(s);
+        }
+    
     }
 
 }
